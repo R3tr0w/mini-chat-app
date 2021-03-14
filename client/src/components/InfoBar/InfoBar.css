@@ -1,0 +1,17 @@
+.root {
+	display: flex;
+	color:red;
+}
+
+.start {
+	width: 50%;
+	color:red;
+	justify-content: flex-end;
+}
+
+.end {
+	display: flex;
+	width: 50%;
+	color:blue;
+	justify-content: flex-end;
+}
