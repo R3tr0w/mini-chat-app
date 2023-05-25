@@ -8,15 +8,15 @@ import Messages from '../Messages/Messages';
 let socket;
 
 const Chat = ({ location }) => {
-	const [name,setName] = useState('');
-	const [room,setRoom] = useState('');
+	const [name, setName] = useState('');
+	const [room, setRoom] = useState('');
 	const [message, setMessage] = useState('');
 	const [messages, setMessages] = useState([]);
 	const ENDPOINT = 'localhost:5000';
 
 	useEffect(() => {
 		const { name, room } = queryString.parse(location.search);
-		
+
 		socket = io(ENDPOINT);
 
 		setName(name);
@@ -35,17 +35,17 @@ const Chat = ({ location }) => {
 	}, [ENDPOINT, location.search]);
 
 	useEffect(() => {
-		
+
 		socket.on('message', (message) => {
 			setMessages([...messages, message]);
-		});	
+		});
 	}, [messages]);
 
 	const sendMessage = event => {
 		event.preventDefault();
 
-		if(message){
-			socket.emit('sendMessage', message, ()=> setMessage(''));
+		if (message) {
+			socket.emit('sendMessage', message, () => setMessage(''));
 		}
 	}
 
@@ -56,7 +56,7 @@ const Chat = ({ location }) => {
 			<Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
 		</div>
 	)
-	
+
 };
 
 export default Chat;
